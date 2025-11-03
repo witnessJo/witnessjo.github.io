@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bitcoin | Richard Jo&#39;s journal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/posts/profile">Profile</a></li>
+      
+      <li><a href="/categories">Categories</a></li>
+      
+      <li><a href="/tags">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Bitcoin</span></h1>
+<h2 class="author">[Witness Jo]</h2>
+<h2 class="date">2025/11/03</h2>
+</div>
+
+<main>
+<h2 id="bitcoin">Bitcoin</h2>
+<h3 id="build-instructions">Build Instructions</h3>
+<ul>
+<li>link: <a href="https://github.com/bitcoin/bitcoin">https://github.com/bitcoin/bitcoin</a></li>
+<li>linux build</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># there is a document about linux build instruction (./doc/build-unix.md)</span>
+</span></span><span style="display:flex;"><span>$ cmake -B build
+</span></span><span style="display:flex;"><span>$ cd ./build
+</span></span><span style="display:flex;"><span>$ make
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># if you need to install binaries</span>
+</span></span><span style="display:flex;"><span>$ make install
+</span></span></code></pre></div><h3 id="mining-instructions--full-node">Mining Instructions (Full Node)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># there is a document about mining instruction (./doc/mining.md)</span>
+</span></span><span style="display:flex;"><span>$ bitcoind
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wallet commands</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli createwallet <span style="color:#e6db74">&#34;mywallet&#34;</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli listwallets
+</span></span><span style="display:flex;"><span>$ bitcoin-cli getwalletinfo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># delete wallet and unloadwallet</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli unloadwallet <span style="color:#e6db74">&#34;mywallet&#34;</span>
+</span></span></code></pre></div><h3 id="bitcoin-directory-structure">Bitcoin Directory Structure</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>witnessjo ~/.bitcoin  $ ls -al
+</span></span><span style="display:flex;"><span>total <span style="color:#ae81ff">27544</span>
+</span></span><span style="display:flex;"><span>drwx------  <span style="color:#ae81ff">5</span> witnessjo witnessjo     <span style="color:#ae81ff">4096</span> Nov  <span style="color:#ae81ff">3</span> 22:59 .
+</span></span><span style="display:flex;"><span>drwx------ <span style="color:#ae81ff">45</span> witnessjo witnessjo     <span style="color:#ae81ff">4096</span> Nov  <span style="color:#ae81ff">3</span> 23:11 ..
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo      <span style="color:#ae81ff">221</span> Nov  <span style="color:#ae81ff">3</span> 22:59 banlist.json
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo        <span style="color:#ae81ff">6</span> Nov  <span style="color:#ae81ff">3</span> 22:59 bitcoind.pid
+</span></span><span style="display:flex;"><span>drwx------  <span style="color:#ae81ff">3</span> witnessjo witnessjo     <span style="color:#ae81ff">4096</span> Nov  <span style="color:#ae81ff">3</span> 23:04 blocks
+</span></span><span style="display:flex;"><span>drwx------  <span style="color:#ae81ff">2</span> witnessjo witnessjo     <span style="color:#ae81ff">4096</span> Nov  <span style="color:#ae81ff">3</span> 22:59 chainstate
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo       <span style="color:#ae81ff">75</span> Nov  <span style="color:#ae81ff">3</span> 22:59 .cookie
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo <span style="color:#ae81ff">28154187</span> Nov  <span style="color:#ae81ff">3</span> 23:11 debug.log
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo        <span style="color:#ae81ff">0</span> Nov  <span style="color:#ae81ff">3</span> 22:59 .lock
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo     <span style="color:#ae81ff">4210</span> Nov  <span style="color:#ae81ff">3</span> 22:59 peers.dat
+</span></span><span style="display:flex;"><span>-rw-------  <span style="color:#ae81ff">1</span> witnessjo witnessjo      <span style="color:#ae81ff">193</span> Nov  <span style="color:#ae81ff">3</span> 22:59 settings.json
+</span></span><span style="display:flex;"><span>drwx------  <span style="color:#ae81ff">3</span> witnessjo witnessjo     <span style="color:#ae81ff">4096</span> Nov  <span style="color:#ae81ff">3</span> 23:05 wallets
+</span></span></code></pre></div><ul>
+<li>banlist.json: list of banned peers</li>
+<li>bitcoind.pid: process id file</li>
+<li>blocks/: block files</li>
+<li>chainstate/: UTXO set database</li>
+<li>.cookie: authentication cookie for RPC</li>
+<li>debug.log: log file</li>
+<li>peers.dat: known peers</li>
+<li>settings.json: user settings</li>
+<li>wallets/: wallet data</li>
+</ul>
+<h4 id="how-to-see-the-chainstate-files--chainstate-directory">How to see the chainstate files (chainstate directory)</h4>
+<ul>
+<li>The chainstate directory contains LevelDB files representing the UTXO set.</li>
+<li>You can use the `leveldb` tools to inspect the contents, but it&rsquo;s generally not human-readable.</li>
+<li>For practical purposes, use Bitcoin Core&rsquo;s RPC commands to query UTXO information.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># latest UTXO information can be queried using</span>
+</span></span><span style="display:flex;"><span>$ TXID<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>bitcoin-cli getblock <span style="color:#66d9ef">$(</span>bitcoin-cli getbestblockhash<span style="color:#66d9ef">)</span> <span style="color:#ae81ff">2</span> | jq -r <span style="color:#e6db74">&#39;.tx[0].txid&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli gettxout $TXID <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;bestblock&#34;</span>: <span style="color:#e6db74">&#34;0000000000000000111424bacbcd919fc9f237f05e10127d3c8d00faeb4dc0e5&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;confirmations&#34;</span>: 315,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;value&#34;</span>: 25.01631000,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;scriptPubKey&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;asm&#34;</span>: <span style="color:#e6db74">&#34;OP_DUP OP_HASH160 ed306ae5bc7cf7c3b7f0fe956149a7bd73d25ff2 OP_EQUALVERIFY OP_CHECKSIG&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;desc&#34;</span>: <span style="color:#e6db74">&#34;addr(1Nd99aNgYWpKkqcqSMgWtdtVDadewAS5F7)#26ytyu96&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;hex&#34;</span>: <span style="color:#e6db74">&#34;76a914ed306ae5bc7cf7c3b7f0fe956149a7bd73d25ff288ac&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;address&#34;</span>: <span style="color:#e6db74">&#34;1Nd99aNgYWpKkqcqSMgWtdtVDadewAS5F7&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;pubkeyhash&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;coinbase&#34;</span>: true
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## description</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># bestblock: hash of the block containing this UTXO</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># confirmations: number of confirmations</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># value: amount of bitcoin in this UTXO</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># scriptPubKey: details about the script that locks this UTXO</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># coinbase: indicates if this UTXO is from a coinbase transaction (conbase transactions are special transactions that create new bitcoins)</span>
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="how-to-see-the-block-files--blocks-directory">How to see the block files (blocks directory)</h4>
+<ul>
+<li>The blocks directory contains blk*.dat files which store the raw block data.</li>
+<li>You can use Bitcoin Core&rsquo;s RPC commands to retrieve and decode block data.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ bitcoin-cli getblockhash &lt;block_height&gt;
+</span></span><span style="display:flex;"><span>$ bitcoin-cli getblock &lt;block_hash&gt;
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="wallet-instructions">Wallet Instructions</h3>
+<h3 id="network-instructions">Network Instructions</h3>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
+
