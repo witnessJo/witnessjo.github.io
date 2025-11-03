@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Programming on Richard Jo&#39;s journal</title>
-    <link>http://localhost:1313/categories/programming/</link>
+    <link>https://jongyoungcha.github.io/categories/programming/</link>
     <description>Recent content in Programming on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Sep 2023 16:10:39 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jongyoungcha.github.io/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JAVA Coding Convention</title>
-      <link>http://localhost:1313/posts/java/java_convention_20220509/</link>
+      <link>https://jongyoungcha.github.io/posts/java/java_convention_20220509/</link>
       <pubDate>Mon, 09 May 2022 15:00:00 +0900</pubDate>
-      <guid>http://localhost:1313/posts/java/java_convention_20220509/</guid>
-      <description>Why 이번에 새로이 PG프로젝트가 진행되었다. 그러나 프로젝트 시작 시 미리 코딩컨벤션에 대한 이야기가 되어있지 않았다. 그래서 각 프로젝트 마다 각기 다른 코딩스타일로 작성이 되어버렸다. 이를 통일하기 위해서 Java를 위한 코딩 컨벤션을 정의하고자 한다.&#xA;Defined Rules Package Structure 패키지를 분류하면 아래의 6가지 패키지 분류로 나누어 진다. 패키지 분류와 속하는 패키지 명이다.&#xA;&amp;ndash; Registry (config)&#xA;&amp;ndash; Controller (controller)&#xA;&amp;ndash; Service (service, vo)&#xA;&amp;ndash; Domain (domain)&#xA;&amp;ndash; Repository (repository, dto)&#xA;&amp;ndash; External (external)</description>
+      <guid>https://jongyoungcha.github.io/posts/java/java_convention_20220509/</guid>
+      <description>&lt;h2 id=&#34;why&#34;&gt;Why&lt;/h2&gt;&#xA;&lt;p&gt;이번에 새로이 PG프로젝트가 진행되었다. 그러나 프로젝트 시작 시 미리 코딩컨벤션에 대한 이야기가 되어있지 않았다. 그래서 각 프로젝트 마다 각기 다른 코딩스타일로 작성이 되어버렸다. 이를 통일하기 위해서 Java를 위한 코딩 컨벤션을 정의하고자 한다.&lt;/p&gt;&#xA;&lt;h2 id=&#34;defined-rules&#34;&gt;Defined Rules&lt;/h2&gt;&#xA;&lt;h3 id=&#34;package-structure&#34;&gt;Package Structure&lt;/h3&gt;&#xA;&lt;p&gt;패키지를 분류하면 아래의 6가지 패키지 분류로 나누어 진다. 패키지 분류와 속하는&#xA;패키지 명이다.&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; Registry (config)&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; Controller (controller)&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; Service (service, vo)&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; Domain (domain)&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; Repository (repository, dto)&lt;/p&gt;&#xA;&lt;p&gt;&amp;ndash; External (external)&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
