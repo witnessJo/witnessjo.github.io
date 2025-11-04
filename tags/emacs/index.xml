@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Emacs on Richard Jo&#39;s journal</title>
-    <link>http://localhost:1313/tags/emacs/</link>
+    <link>https://jongyoungcha.github.io/tags/emacs/</link>
     <description>Recent content in Emacs on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Sep 2023 16:10:33 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://jongyoungcha.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs dap-mode debug with eglot-mode</title>
-      <link>http://localhost:1313/posts/emacs/dap-mode_debugging_with_eglot-mode_20230924/</link>
+      <link>https://jongyoungcha.github.io/posts/emacs/dap-mode_debugging_with_eglot-mode_20230924/</link>
       <pubDate>Sun, 24 Sep 2023 00:00:00 +0900</pubDate>
-      <guid>http://localhost:1313/posts/emacs/dap-mode_debugging_with_eglot-mode_20230924/</guid>
+      <guid>https://jongyoungcha.github.io/posts/emacs/dap-mode_debugging_with_eglot-mode_20230924/</guid>
       <description>&lt;h2 id=&#34;dap-mode-debug-with-eglot-mode&#34;&gt;dap-mode debug with eglot-mode&lt;/h2&gt;&#xA;&lt;p&gt;최근에 회사에서 typescript로 block-listener 어플리케이션을 debugging을 해야할 일이 생겼다.&#xA;emacs예서 debugging 자주 사용하는 플러그인 dap-mode를 주로 사용한다.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/emacs-lsp/dap-mode&#34;&gt;https://github.com/emacs-lsp/dap-mode&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;MS에서 debug-server와 debug-client (ex: vscode, vim, emacs, sublime&amp;hellip;)들이 표준화된 방식으로 통신할 수 있는 방식으로 DAP(Debug Adapter Protocol)을 만들었다.&lt;/p&gt;&#xA;&lt;p&gt;당연히 MS에서 만든 vscode에서는 이 DAP을 사용한다.&lt;/p&gt;&#xA;&lt;p&gt;emacs내에서도 독립적으로 DAP을 사용하는 mode가 존재했으면 좋겠지만 불행히도 그렇지는 못한것 같다.&lt;/p&gt;&#xA;&lt;p&gt;dap-mode란 플러그인이 존재하는데, dap-client의 모든 기능을 emacs-lisp으로 다 구현한 것이 아닌&lt;/p&gt;&#xA;&lt;p&gt;vscode의 DAP 확장 플러그인을 호출하는 방식 같았다.&lt;/p&gt;</description>
     </item>
   </channel>
