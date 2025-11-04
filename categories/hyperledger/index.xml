@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hyperledger on Richard Jo&#39;s journal</title>
-    <link>https://jongyoungcha.github.io/categories/hyperledger/</link>
+    <link>http://localhost:1313/categories/hyperledger/</link>
     <description>Recent content in Hyperledger on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 03 Nov 2023 10:44:39 +0900</lastBuildDate>
-    <atom:link href="https://jongyoungcha.github.io/categories/hyperledger/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/categories/hyperledger/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Installing Fabric Binaries</title>
-      <link>https://jongyoungcha.github.io/posts/hyperledger/startup-fabric-network/</link>
+      <link>http://localhost:1313/posts/hyperledger/startup-fabric-network/</link>
       <pubDate>Thu, 05 Oct 2023 00:00:00 +0900</pubDate>
-      <guid>https://jongyoungcha.github.io/posts/hyperledger/startup-fabric-network/</guid>
+      <guid>http://localhost:1313/posts/hyperledger/startup-fabric-network/</guid>
       <description>&lt;h2 id=&#34;full-table-of-contents&#34;&gt;Full Table of Contents&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Installing Fabric Binaries&lt;/li&gt;&#xA;&lt;li&gt;Start Fabric CA Process&lt;/li&gt;&#xA;&lt;li&gt;Create Certificates for Orderer Organization (Locate MSPs)&lt;/li&gt;&#xA;&lt;li&gt;Create Certificates for Peer Organizations (Locate MSPs)&lt;/li&gt;&#xA;&lt;li&gt;Create Genesis Block&lt;/li&gt;&#xA;&lt;li&gt;Start Up Orderer Nodes&lt;/li&gt;&#xA;&lt;li&gt;Start Up Peer Nodes&lt;/li&gt;&#xA;&lt;li&gt;Create and Join Channel&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;installing-fabric-binaries&#34;&gt;Installing Fabric Binaries&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Binaries project (&lt;a href=&#34;https://codeberg.org/richard-jo/rj-fabric-snippets.git&#34;&gt;https://codeberg.org/richard-jo/rj-fabric-snippets.git&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://codeberg.org/richard-jo/rj-fabric-snippets.git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd rj-fabric-snippets&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Download fabric binaries&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./install-bin.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd ./bin&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Add bin directory of fabric excutables to PATH (bash)&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;${&lt;/span&gt;rj-fabric-snippets&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;/bin&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Seting up local fabric network (single-org)&lt;/p&gt;</description>
     </item>
   </channel>
