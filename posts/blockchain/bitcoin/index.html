@@ -44,17 +44,10 @@
 </span></span><span style="display:flex;"><span>$ make
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># if you need to install binaries</span>
 </span></span><span style="display:flex;"><span>$ make install
-</span></span></code></pre></div><h3 id="mining-instructions--full-node">Mining Instructions (Full Node)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># There is a document about mining instruction (./doc/mining.md)</span>
-</span></span><span style="display:flex;"><span>$ bitcoind
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Setting up a full node is needed too large storage space (over 500GB)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># But testnet is having small storage space (around 50GB)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># If you want to set up test net node, run the following command</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># It is enough to test bitcoin commands</span>
-</span></span><span style="display:flex;"><span>$ bitcoind -testnet
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># If you use bitcoin as test node mode, You can modify the &#34;.bitcoin/bitcoin.conf&#34; file like below</span>
+</span></span></code></pre></div><h3 id="mining-instructions">Mining Instructions</h3>
+<h4 id="wallet-setup-for-mining">Wallet setup for mining</h4>
+<p>To start mining on your regtest node, you need to have a wallet set up to receive mining rewards.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># If you use bitcoin as test node mode, You can modify the &#34;.bitcoin/bitcoin.conf&#34; file like below</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># testnet=1</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Wallet commands</span>
@@ -62,8 +55,54 @@
 </span></span><span style="display:flex;"><span>$ bitcoin-cli listwallets
 </span></span><span style="display:flex;"><span>$ bitcoin-cli getwalletinfo
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># delete wallet and unloadwallet</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli unloadwallet <span style="color:#e6db74">&#34;mywallet&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load your wallet when your wallet is already created</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli loadwallet <span style="color:#e6db74">&#34;mywallet&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start mining to a new address of your wallet</span>
+</span></span><span style="display:flex;"><span>$ YOUR_ADDRESS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>bitcoin-cli getnewaddress<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>$ echo $YOUR_ADDRESS &gt;&gt; ~/.bitcoin/mining_address.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or load an latest address from file (last line)</span>
+</span></span><span style="display:flex;"><span>$ YOUR_ADDRESS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>tail -n <span style="color:#ae81ff">1</span> ~/.bitcoin/mining_address.txt<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># It is only for regtest or testnet mode (It is a feature for testing purpose)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fist agument is number of blocks to mine</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Second argument is your bitcoin address to receive mining rewards</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli generatetoaddress <span style="color:#ae81ff">1</span> $YOUR_ADDRESS
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mine 1..100 blocks to your address -&gt; mininum 100 blocks are needed to spend mining rewards</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli generatetoaddress <span style="color:#ae81ff">100</span> $YOUR_ADDRESS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check your &#34;hdkeypath&#34; field if &#34;m/84h/1h/0h/0/7&#34; --&gt; it is bech32 address and the wallet index is 7</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli getaddressinfo $YOUR_ADDRESS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check private key of the address you are mining to (be careful with private keys!)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Look at the 7th entry (index 7) for the private key information</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli listdescriptors true | jq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># See mining rewards in your wallet</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># total balance should increase after mining</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli getbalance
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># each mined block reward</span>
+</span></span><span style="display:flex;"><span>$ bitcoin-cli listreceivedbyaddress <span style="color:#ae81ff">1</span> true
+</span></span></code></pre></div><h4 id="mining--full-node">Mining (Full Node)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># There is a document about mining instruction (./doc/mining.md)</span>
+</span></span><span style="display:flex;"><span>$ bitcoind
+</span></span></code></pre></div><h4 id="mining--regtest">Mining (RegTest)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># RegTest mode is for local testing purpose</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># You can set up your own private bitcoin network</span>
+</span></span><span style="display:flex;"><span>$ bitcoind -regtest
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;regtest=1&#34;</span> &gt;&gt; ~/.bitcoin/bitcoin.conf
+</span></span><span style="display:flex;"><span>$ bitcoind
+</span></span></code></pre></div><h4 id="mining--testnet">Mining (TestNet)</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Setting up a full node is needed too large storage space (over 500GB)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># But testnet is having small storage space (around 50GB)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If you want to set up test net node, run the following command</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># It is enough to test bitcoin commands</span>
+</span></span><span style="display:flex;"><span>$ bitcoind -testnet
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;testnet=1&#34;</span> &gt;&gt; ~/.bitcoin/bitcoin.conf
+</span></span><span style="display:flex;"><span>$ bitcoind
 </span></span></code></pre></div><h3 id="bitcoin-directory-structure">Bitcoin Directory Structure</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>witnessjo ~/.bitcoin  $ ls -al
 </span></span><span style="display:flex;"><span>total <span style="color:#ae81ff">27544</span>
@@ -122,37 +161,12 @@
 <h4 id="how-to-see-the-block-files--blocks-directory">How to see the block files (blocks directory)</h4>
 <ul>
 <li>The blocks directory contains blk*.dat files which store the raw block data.</li>
-<li>You can use Bitcoin Core&rsquo;s RPC commands to retrieve and decode block data.
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ bitcoin-cli getblockhash &lt;block_height&gt;
-</span></span><span style="display:flex;"><span>$ bitcoin-cli getblock &lt;block_hash&gt;
-</span></span></code></pre></div></li>
+<li>You can use Bitcoin Core&rsquo;s RPC commands to retrieve and decode block data.</li>
 </ul>
 <h4 id="how-to-start-bitcoin-mining">How to start bitcoin mining</h4>
 <ul>
 <li>To start mining on your full node, you need to have a wallet set up to receive mining rewards.</li>
-<li>Use the following command to start mining:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get your bitcoin address from your wallet</span>
-</span></span><span style="display:flex;"><span>$ YOUR_ADDRESS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>bitcoin-cli getnewaddress<span style="color:#66d9ef">)</span>
-</span></span><span style="display:flex;"><span>$ echo $YOUR_ADDRESS &gt;&gt; ~/.bitcoin/mining_address.txt
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start mining to that address</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli generatetoaddress <span style="color:#ae81ff">1</span> $YOUR_ADDRESS
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># number_of_blocks: number of blocks to mine (e.g., 1)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># your_bitcoin_address: address to receive mining rewards</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check your &#34;hdkeypath&#34; field if &#34;m/84h/1h/0h/0/7&#34; --&gt; it is bech32 address and the wallet index is 7</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli getaddressinfo $YOUR_ADDRESS
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check private key of the address you are mining to (be careful with private keys!)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Look at the 7th entry (index 7) for the private key information</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli listdescriptors true | jq
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># See mining rewards in your wallet</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># total balance should increase after mining</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli getbalance
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># each mined block reward</span>
-</span></span><span style="display:flex;"><span>$ bitcoin-cli listreceivedbyaddress <span style="color:#ae81ff">1</span> true
-</span></span></code></pre></div></li>
+<li>Use the following command to start mining:</li>
 </ul>
 <h3 id="wallet-instructions">Wallet Instructions</h3>
 <h4 id="create-a-new-wallet">Create a new wallet</h4>
