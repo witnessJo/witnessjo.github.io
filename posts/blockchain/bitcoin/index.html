@@ -184,12 +184,44 @@
 <h4 id="get-wallet-info">Get wallet info</h4>
 <ul>
 <li>To get information about the currently loaded wallet, use:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ bitcoin-cli getwalletinfo
-</span></span></code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"></code></pre></div></li>
 </ul>
 <h4 id="check-mining-rewards-address">Check mining rewards address</h4>
-<h3 id="network-instructions">Network Instructions</h3>
-
+<h3 id="network-monitoring--block-explorer">Network Monitoring (Block Explorer)</h3>
+<h4 id="btc-rpc-explorer">btc-rpc-explorer</h4>
+<p>An Official blockchain explorer</p>
+<ul>
+<li>link: <a href="https://github.com/janoside/btc-rpc-explorer">https://github.com/janoside/btc-rpc-explorer</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Before running btc-rpc-explorer, make sure your bitcoind is running with RPC server enabled.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># You need to set up config file (~/.bitcoin/bitcoin.conf) like below</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#####################</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># server=1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rpcuser=root</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rpcpassword=root</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rpcallowip=127.0.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rpcbind=127.0.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># regtest=1 (optional)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#####################</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># And restart your bitcoind process</span>
+</span></span><span style="display:flex;"><span>pkill bitcoind
+</span></span><span style="display:flex;"><span>bitcoind --daemon
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then run btc-rpc-explorer</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default bitcoind rpc port is 8332</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/janoside/btc-rpc-explorer
+</span></span><span style="display:flex;"><span>docker build -t btc-rpc-explorer ./btc-rpc-explorer
+</span></span><span style="display:flex;"><span>docker run -it --network host <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_HOST<span style="color:#f92672">=</span>0.0.0.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3002</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_BITCOIND_HOST<span style="color:#f92672">=</span>127.0.0.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_BITCOIND_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">8332</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_BITCOIND_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_BITCOIND_PASS<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       -e BTCEXP_BASIC_AUTH_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       btc-rpc-explorer
+</span></span></code></pre></div>
 </main>
 
   <footer>
