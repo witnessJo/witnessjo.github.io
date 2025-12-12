@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Isolation Levels for PostgreSQL | Richard Jo&#39;s journal</title>
@@ -36,7 +36,7 @@
 <h3 id="isolation-levels-overview">Isolation Levels Overview</h3>
 <p>PostgreSQL supports four standard isolation levels defined by the SQL standard:</p>
 <ul>
-<li>Read Uncommitted</li>
+<li>Read Uncommitted (Same as Read Committed in PostgreSQL)</li>
 <li>Read Committed</li>
 <li>Repeatable Read</li>
 <li>Serializable</li>
@@ -46,7 +46,7 @@
 <ul>
 <li>The lowest isolation level.</li>
 <li>Transactions can see uncommitted changes made by other transactions (dirty reads).</li>
-<li>Not supported in PostgreSQL; it behaves like Read Committed.</li>
+<li>Not supported in PostgreSQL; it behaves like Read Committed. (It is defined in settings but has no effect.)</li>
 </ul>
 <h3 id="read-committed">Read Committed</h3>
 <ul>
