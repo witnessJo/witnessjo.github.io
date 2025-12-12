@@ -6,7 +6,7 @@
     <description>Recent content on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Dec 2025 15:55:02 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 12 Dec 2025 16:00:05 +0900</lastBuildDate>
     <atom:link href="https://jongyoungcha.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Isolation Levels for PostgreSQL</title>
@@ -98,13 +98,6 @@
       <pubDate>Sat, 17 Oct 1987 00:00:00 +0900</pubDate>
       <guid>https://jongyoungcha.github.io/posts/profile/</guid>
       <description>&lt;h2 id=&#34;richard-jo-developer&#34;&gt;Richard Jo, Developer&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;LinkedIn: &lt;a href=&#34;https://www.linkedin.com/in/yeongchan-jo-37193a140&#34;&gt;https://www.linkedin.com/in/yeongchan-jo-37193a140&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Github: &lt;a href=&#34;https://github.com/witnessJo&#34;&gt;https://github.com/witnessJo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Codeberg: &lt;a href=&#34;https://codeberg.org/witnessJo&#34;&gt;https://codeberg.org/witnessJo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;tech-stacks&#34;&gt;Tech Stacks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Langauges: Golang, Java/TypeScript, Java, C-plus, C, Shell Script&lt;/li&gt;&#xA;&lt;li&gt;DB: PostgresSQL, MariaDB, MongoDB, Redis&lt;/li&gt;&#xA;&lt;li&gt;Infra: Kubernetes, Docker, Kafka&lt;/li&gt;&#xA;&lt;li&gt;OS: Linux, OSX, Windows&lt;/li&gt;&#xA;&lt;li&gt;IDE: Emacs, VSCode, IntelliJ&lt;/li&gt;&#xA;&lt;li&gt;ETC: Hyperledger Fabric, Ethereum, BitCoin&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://jongyoungcha.github.io/posts/issues_free/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://jongyoungcha.github.io/posts/issues_free/</guid>
-      <description>&lt;h2 id=&#34;emacs-configuration&#34;&gt;Emacs Configuration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;mastering-emacs&#34;&gt;mastering-emacs&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;add debug line highlight&lt;/li&gt;&#xA;&lt;li&gt;set combobulate from typescript&lt;/li&gt;&#xA;&lt;li&gt;disable meow from vterm mode (for vim)&lt;/li&gt;&#xA;&lt;li&gt;when opened yml file, the mode is not yaml-ts-mode&lt;/li&gt;&#xA;&lt;li&gt;when mcp enabled, i got duplicated enabling mcp counter&lt;/li&gt;&#xA;&lt;li&gt;after corfu completion, previouse input is not cleared&lt;/li&gt;&#xA;&lt;li&gt;corfu auto completion is so slow&lt;/li&gt;&#xA;&lt;li&gt;have to learn macro in emacs (is it valuable?)&lt;/li&gt;&#xA;&lt;li&gt;set up eslint environment for emacs&lt;/li&gt;&#xA;&lt;li&gt;org-mode grammer checker&lt;/li&gt;&#xA;&lt;li&gt;add forward-sexp for rust programming&lt;/li&gt;&#xA;&lt;li&gt;all text changed&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;warezcat&#34;&gt;warezcat&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;finish domain schema&lt;/li&gt;&#xA;&lt;li&gt;implement authentication&lt;/li&gt;&#xA;&lt;li&gt;implement board&lt;/li&gt;&#xA;&lt;li&gt;implement comment&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;bitcoin&#34;&gt;bitcoin&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;make wallet&lt;/li&gt;&#xA;&lt;li&gt;minning&lt;/li&gt;&#xA;&lt;li&gt;show the block list&lt;/li&gt;&#xA;&lt;li&gt;show the transaction list&lt;/li&gt;&#xA;&lt;li&gt;make wallet (soruce, target)&lt;/li&gt;&#xA;&lt;li&gt;send transactions to specific address&lt;/li&gt;&#xA;&lt;li&gt;learn UTXO model&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;ethereum&#34;&gt;ethereum&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;make WIJToken to ethereum mainnet network&lt;/li&gt;&#xA;&lt;li&gt;study more about smart contract&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;blog&#34;&gt;blog&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;write all things I leanred to my blog&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;coding-test&#34;&gt;coding test&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;make sentinel helm chartfed- test from local environment&lt;/li&gt;&#xA;&lt;li&gt;write readme file&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;echo DATABASE_URL=postgres://postgres:postgres@localhost/postgres &amp;gt; .env&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
