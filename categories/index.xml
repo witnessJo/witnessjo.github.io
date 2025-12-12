@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Nov 2025 16:38:03 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 12 Dec 2025 15:55:02 +0900</lastBuildDate>
     <atom:link href="https://jongyoungcha.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Db</title>
+      <link>https://jongyoungcha.github.io/categories/db/</link>
+      <pubDate>Fri, 12 Dec 2025 00:00:00 +0900</pubDate>
+      <guid>https://jongyoungcha.github.io/categories/db/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Emacs</title>
       <link>https://jongyoungcha.github.io/categories/emacs/</link>

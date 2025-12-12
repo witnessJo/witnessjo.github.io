@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Isolation Levels for PostgreSQL | Richard Jo&#39;s journal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/posts/profile">Profile</a></li>
+      
+      <li><a href="/categories">Categories</a></li>
+      
+      <li><a href="/tags">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Isolation Levels for PostgreSQL</span></h1>
+<h2 class="author">[Witness Jo]</h2>
+<h2 class="date">2025/12/12</h2>
+</div>
+
+<main>
+<h2 id="this-post-describes-the-isolation-levels-in-postgresql-and-their-implications-dot">This post describes the isolation levels in PostgreSQL and their implications.</h2>
+<h3 id="isolation-levels-overview">Isolation Levels Overview</h3>
+<p>PostgreSQL supports four standard isolation levels defined by the SQL standard:</p>
+<ul>
+<li>Read Uncommitted</li>
+<li>Read Committed</li>
+<li>Repeatable Read</li>
+<li>Serializable</li>
+</ul>
+<p>Each level provides different guarantees about the visibility of data changes made by concurrent transactions.</p>
+<h3 id="read-uncommitted">Read Uncommitted</h3>
+<ul>
+<li>The lowest isolation level.</li>
+<li>Transactions can see uncommitted changes made by other transactions (dirty reads).</li>
+<li>Not supported in PostgreSQL; it behaves like Read Committed.</li>
+</ul>
+<h3 id="read-committed">Read Committed</h3>
+<ul>
+<li>Default isolation level in PostgreSQL.</li>
+<li>A transaction sees only data committed before the query began.</li>
+<li>Prevents dirty reads but allows non-repeatable reads and phantom reads.</li>
+<li>Suitable for most applications where high concurrency is required.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>f-tx</th>
+          <th>s-tx</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td></td>
+          <td>READ (1)</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>UPDATE &hellip; +1 (locks)</td>
+          <td></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td></td>
+          <td>UPDATE &hellip; +1 → <strong><strong>WAITS</strong></strong></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>COMMIT (writes 2)</td>
+          <td></td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td></td>
+          <td>→ unblocked</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td></td>
+          <td>→ reloads (2)</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td></td>
+          <td>→ applies +1 (3)</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>10</td>
+          <td></td>
+          <td>→ COMMIT (writes 3)</td>
+          <td>3</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="repeatable-read">Repeatable Read</h3>
+<ul>
+<li>A transaction sees a consistent snapshot of the database as of the start of the transaction.</li>
+<li>Prevents dirty reads and non-repeatable reads but allows phantom reads.</li>
+<li>Suitable for scenarios where consistent reads are required within a transaction.</li>
+<li>May lead to serialization anomalies in highly concurrent environments.</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>f-tx</th>
+          <th>s-tx</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN (snapshot: sees 1)</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td></td>
+          <td>READ (1)</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>UPDATE &hellip; +1 (locks)</td>
+          <td></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td></td>
+          <td>UPDATE &hellip; +1 → <strong><strong>WAITS</strong></strong></td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>COMMIT (writes 2)</td>
+          <td></td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td></td>
+          <td>→ <strong><strong>ERROR: could not serialize</strong></strong></td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td></td>
+          <td>→ ROLLBACK</td>
+          <td>2</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="serializable">Serializable</h3>
+<ul>
+<li>The highest isolation level.</li>
+<li>Transactions are executed in a way that they appear to be serialized.</li>
+<li>Prevents dirty reads, non-repeatable reads, and phantom reads.</li>
+<li>May lead to serialization failures, requiring transactions to be retried.</li>
+<li>Suitable for applications requiring strict consistency.</li>
+<li>It&rsquo;s almost same with Repeatable Read in PostgreSQL, but with additional checks to ensure serializability. Such cases are
+<ul>
+<li>
+<p>Write Skew Anomaly</p>
+<table>
+  <thead>
+      <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>on_call</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Alice</td>
+          <td>true</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Bob</td>
+          <td>true</td>
+      </tr>
+  </tbody>
+</table>
+<p>In Repeatable Read:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>tx1 (Alice requests off-duty)</th>
+          <th>tx2 (Bob requests off-duty)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>SELECT COUNT(*) FROM doctors</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>WHERE on_call = true;  &ndash; sees 2 ✓</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td>SELECT COUNT(*) FROM doctors</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>WHERE on_call = true;  &ndash; sees 2 ✓</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>UPDATE doctors SET on_call = false</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>WHERE id = 1;  &ndash; Alice goes off</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td></td>
+          <td>UPDATE doctors SET on_call = false</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>WHERE id = 2;  &ndash; Bob goes off</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>COMMIT  ✓</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td></td>
+          <td>COMMIT  ✓</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>Result: 0 doctors on call! 💥</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p><strong><strong>Repeatable Read CANNOT detect this!</strong></strong>
+Each transaction updates a different row (no conflict)
+Each sees 2 doctors in their snapshot
+But the result is 0 doctors (business rule violated)</p>
+<p>In Serializable:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>tx1 (Alice)</th>
+          <th>tx2 (Bob)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>SELECT COUNT(*) &hellip; &ndash; 2</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td>SELECT COUNT(*) &hellip; &ndash; 2</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>UPDATE &hellip; id = 1</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td></td>
+          <td>UPDATE &hellip; id = 2</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>COMMIT  ✓</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td></td>
+          <td>COMMIT 💥</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>ERROR: could not serialize</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>access due to read/write</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>dependencies among transactions</td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p>Read-Only Transaction Anomaly
+In Repeatable Read:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>tx1 (reports)</th>
+          <th>tx2 (updates)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>SELECT SUM(balance) &hellip; &ndash; 300</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td>UPDATE accounts SET balance =</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>balance + 100 WHERE id = 1</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td></td>
+          <td>COMMIT</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>SELECT SUM(balance) &hellip; &ndash; 300</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>COMMIT</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+<p>In Serializable:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>tx1 (reports)</th>
+          <th>tx2 (updates)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>BEGIN</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td></td>
+          <td>BEGIN</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>SELECT SUM(balance) &hellip; &ndash; 300</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td></td>
+          <td>UPDATE accounts SET balance =</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td></td>
+          <td>balance + 100 WHERE id = 1</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td></td>
+          <td>COMMIT</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>SELECT SUM(balance) &hellip;</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>&ndash; ERROR: could not serialize</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>access due to read/write</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>dependencies among</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>transactions</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>ROLLBACK</td>
+          <td></td>
+      </tr>
+  </tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
+
