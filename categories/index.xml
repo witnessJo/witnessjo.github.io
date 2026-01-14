@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Richard Jo&#39;s journal</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 12 Dec 2025 16:00:05 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 14 Jan 2026 21:48:12 +0900</lastBuildDate>
     <atom:link href="https://jongyoungcha.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://jongyoungcha.github.io/categories/linux/</link>
+      <pubDate>Wed, 14 Jan 2026 00:00:00 +0900</pubDate>
+      <guid>https://jongyoungcha.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Db</title>
       <link>https://jongyoungcha.github.io/categories/db/</link>
@@ -27,13 +34,6 @@
       <link>https://jongyoungcha.github.io/categories/blockchain/</link>
       <pubDate>Fri, 10 May 2024 15:01:00 +0900</pubDate>
       <guid>https://jongyoungcha.github.io/categories/blockchain/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://jongyoungcha.github.io/categories/linux/</link>
-      <pubDate>Fri, 16 Feb 2024 00:00:00 +0900</pubDate>
-      <guid>https://jongyoungcha.github.io/categories/linux/</guid>
       <description></description>
     </item>
     <item>

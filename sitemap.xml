@@ -3,19 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://jongyoungcha.github.io/categories/</loc>
-    <lastmod>2025-12-12T16:00:05+09:00</lastmod>
+    <lastmod>2026-01-14T21:48:12+09:00</lastmod>
   </url><url>
-    <loc>https://jongyoungcha.github.io/categories/db/</loc>
-    <lastmod>2025-12-12T16:00:05+09:00</lastmod>
+    <loc>https://jongyoungcha.github.io/posts/linux/trackpoint-drifting/</loc>
+    <lastmod>2026-01-14T21:48:12+09:00</lastmod>
   </url><url>
-    <loc>https://jongyoungcha.github.io/posts/db/isolation-levels/</loc>
-    <lastmod>2025-12-12T16:00:05+09:00</lastmod>
+    <loc>https://jongyoungcha.github.io/categories/linux/</loc>
+    <lastmod>2026-01-14T21:48:12+09:00</lastmod>
   </url><url>
     <loc>https://jongyoungcha.github.io/posts/</loc>
-    <lastmod>2025-12-12T16:00:05+09:00</lastmod>
+    <lastmod>2026-01-14T21:48:12+09:00</lastmod>
   </url><url>
     <loc>https://jongyoungcha.github.io/</loc>
-    <lastmod>2025-12-12T16:00:05+09:00</lastmod>
+    <lastmod>2026-01-14T21:48:12+09:00</lastmod>
+  </url><url>
+    <loc>https://jongyoungcha.github.io/categories/db/</loc>
+    <lastmod>2025-12-12T16:05:13+09:00</lastmod>
+  </url><url>
+    <loc>https://jongyoungcha.github.io/posts/db/isolation-levels/</loc>
+    <lastmod>2025-12-12T16:05:13+09:00</lastmod>
   </url><url>
     <loc>https://jongyoungcha.github.io/categories/emacs/</loc>
     <lastmod>2025-11-26T16:39:50+09:00</lastmod>
@@ -39,9 +45,6 @@
     <lastmod>2024-05-10T16:46:43+09:00</lastmod>
   </url><url>
     <loc>https://jongyoungcha.github.io/posts/linux/kmonad/</loc>
-    <lastmod>2024-02-16T16:02:28+09:00</lastmod>
-  </url><url>
-    <loc>https://jongyoungcha.github.io/categories/linux/</loc>
     <lastmod>2024-02-16T16:02:28+09:00</lastmod>
   </url><url>
     <loc>https://jongyoungcha.github.io/posts/linux/rofi/</loc>

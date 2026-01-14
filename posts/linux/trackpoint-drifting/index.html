@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fix Trackpoint drifting issue on Lenovo Laptops (Linux) | Richard Jo&#39;s journal</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    
+  </head>
+
+  <body>
+    <nav>
+    <ul class="menu">
+      
+      <li><a href="/">Home</a></li>
+      
+      <li><a href="/posts/profile">Profile</a></li>
+      
+      <li><a href="/categories">Categories</a></li>
+      
+      <li><a href="/tags">Tags</a></li>
+      
+    </ul>
+    <hr/>
+    </nav>
+
+<div class="article-meta">
+<h1><span class="title">Fix Trackpoint drifting issue on Lenovo Laptops (Linux)</span></h1>
+<h2 class="author">[Witness Jo]</h2>
+<h2 class="date">2026/01/14</h2>
+</div>
+
+<main>
+<h2 id="fix-trackpoint-drifting-issue-on-lenovo-laptops--linux">Fix Trackpoint drifting issue on Lenovo Laptops (Linux)</h2>
+<p>Recently, I encountered an issue with the Trackpoint on my Lenovo laptop where it would drift unexpectedly. After some
+research and troubleshooting, I found a solution that worked for me.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check current sensitivity value</span>
+</span></span><span style="display:flex;"><span>cat /sys/devices/platform/i8042/serio1/sensitivity
+</span></span><span style="display:flex;"><span>echo <span style="color:#ae81ff">100</span> | sudo tee /sys/devices/platform/i8042/serio1/sensitivity
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># And then test if the drifting issue is resolved.</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># If the above command resolves the issue, you can make this change permanent by creating a systemd service.</span>
+</span></span><span style="display:flex;"><span>sudo tee /etc/udev/rules.d/10-trackpoint.rules <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ACTION==&#34;add&#34;, SUBSYSTEM==&#34;input&#34;, ATTR{name}==&#34;TPPS/2 Elan TrackPoint&#34;, ATTR{device/sensitivity}=&#34;100&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>sudo udevadm control --reload-rules
+</span></span></code></pre></div>
+</main>
+
+  <footer>
+  
+  
+  </footer>
+  </body>
+</html>
+
